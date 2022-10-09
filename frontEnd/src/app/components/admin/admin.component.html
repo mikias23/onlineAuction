@@ -1,0 +1,229 @@
+<app-fetch (auctioneers)="auctioneers($event)" (bidders)="bidders($event)" (auctions)="auctions($event)" (returnInterval)="updateInterval($event)" (cities)="citiesReturned($event)" (categories)="categoriesFunc($event)" (auctionsHistory)="auctionsHistory($event)">
+
+</app-fetch>
+
+
+<div class="center">
+    <div [ngClass]="selected === 'sidebar' ? 'sidebar selected': 'sidebar'">
+     <div class="img d-flex flex-column justify-content-center">
+      <p class="text-center my-2 text-light bg-success p-2">Username - {{admin.username | titlecase}}</p>
+      <p class="text-center my-2 text-light bg-success p-2">Email - {{admin.email | titlecase}}</p>
+      <p class="text-center my-2 text-light bg-secondary p-2">First Name - {{admin.firstName| titlecase}}</p>
+      <p class="text-center my-2 text-light bg-secondary p-2">Last Name - {{admin.lastName | titlecase}}</p>
+      <p class="text-center my-2 text-light bg-dark p-2">Phone- {{admin.phone| titlecase}}</p>
+     </div>
+    </div>
+    <div [ngClass]="selected === 'profile' ? 'profile selected': 'profile'" >
+        <app-edit-profile [user]="admin" [type]="'admin'">
+
+        </app-edit-profile>
+    </div>
+    <div [ngClass]="selected === 'auctions' ? 'auctions selected': 'auctions'"  *ngIf = "auctionsArray.length || auctionsHistoryArray.length">
+        <mat-button-toggle-group #toggleAuction="matButtonToggleGroup" value="1" >
+            <mat-button-toggle value="1" >
+              Auctions
+               </mat-button-toggle>
+               <mat-button-toggle value="2">Auctions History</mat-button-toggle>
+    
+    
+            </mat-button-toggle-group>
+
+      <app-auctions-list  [auctions]="auctionsArray" (deleteAuction)="deleteAuction($event)" *ngIf="toggleAuction.value === '1'">
+
+      </app-auctions-list>
+      <div class="my-2 d-flex flex-column justify-content-between align-items-center" *ngIf="toggleAuction.value === '1'">
+        <p style="font-size:20px">Delete All Auctions</p>
+       <button mat-raised-button (click)="removeAll('auctions')" class="py-2">
+         <fa-icon [icon]="faTrashAlt">
+             
+         </fa-icon>
+       </button>
+        </div>
+      <app-history-list   [auctionsHist]="auctionsHistoryArray" *ngIf="toggleAuction.value === '2'" (deleteAuctionHist)="deleteAuctionHist($event)" >
+
+    </app-history-list>
+    <div class="my-2 d-flex flex-column justify-content-between align-items-center" *ngIf="toggleAuction.value === '2'">
+        <p style="font-size:20px">Delete All Auction Histories</p>
+       <button mat-raised-button (click)="removeAll('histories')" class="py-2">
+         <fa-icon [icon]="faTrashAlt">
+             
+         </fa-icon>
+       </button>
+        </div>
+    </div>
+    <div [ngClass]="selected === 'auctions' ? 'auctions selected': 'auctions'"  *ngIf="!auctionsArray.length && !auctionsHistoryArray.length ">
+        <p class="text-light bg-danger w-100 text-center my-2">No Auctions can be found</p>
+        <div class="imgNone mt-2 mx-auto d-flex flex-column">
+            <img [src]="'objShown.imgPath'" onerror="this.src='../../../assets/no-data.jpg'" >
+        </div>
+    </div>
+ 
+    <div [ngClass]="selected === 'cities' ? 'cities selected': 'cities'" >
+<div class="">
+    <mat-button-toggle-group #toggle="matButtonToggleGroup" value="1" class="w-100">
+        <mat-button-toggle value="1" class="w-50">
+           Cities
+           </mat-button-toggle>
+      
+        <mat-button-toggle value="2" class="w-50">Add city</mat-button-toggle>
+        </mat-button-toggle-group>
+</div>
+
+            <div class="" *ngIf="citiesArray.length  && toggle.value === '1'">
+                <app-cities  [cities]="citiesArray" (deleteCity)="deleteCity($event)">
+                </app-cities>
+                <div class="my-2 d-flex flex-column justify-content-between align-items-center">
+                    <p style="font-size:20px;color: black;">Delete All Cities</p>
+                   <button mat-raised-button (click)="removeAll('cities')" class="py-2">
+                     <fa-icon [icon]="faTrashAlt">
+                         
+                     </fa-icon>
+                   </button>
+                    </div>
+
+            </div>
+            
+                <div class="" *ngIf="!citiesArray.length  && toggle.value === '1'">
+                    <p class="text-light bg-danger w-100 text-center my-2">No city Uploaded yet </p>
+                    <div class="imgNone mt-2 mx-auto d-flex flex-column">
+                        <img [src]="'objShown.imgPath'" onerror="this.src='../../../assets/no-data.jpg'" >
+    
+                </div>
+                </div>
+          
+          
+           <div class="addCity" *ngIf="toggle.value === '2'">
+            <app-add-city (addCity)="addCity($event)">
+    
+            </app-add-city>
+            </div>
+
+
+    </div>
+    <div [ngClass]="selected === 'categories' ? 'categories selected': 'categories'"  >
+        <div class="">
+            <mat-button-toggle-group #toggler="matButtonToggleGroup" value="1" class="w-100">
+                <mat-button-toggle value="1" class="w-50">
+                   Categories
+                   </mat-button-toggle>
+              
+                <mat-button-toggle value="2" class="w-50">Add Catgeory</mat-button-toggle>
+                </mat-button-toggle-group>
+        </div>
+
+        <div class="" *ngIf="categories.length && toggler.value === '1'">
+        <app-categories [categories]="categories" (deleteCategory)="deleteCategory($event)">    
+        </app-categories>
+        <div class="my-2 d-flex flex-column justify-content-between align-items-center" >
+            <p style="font-size:14px">Delete All Categories</p>
+           <button mat-raised-button (click)="removeAll('categories')" class="py-2">
+             <fa-icon [icon]="faTrashAlt">
+                 
+             </fa-icon>
+           </button>
+            </div>
+        </div>
+        <div class="" *ngIf="!categories.length  && toggler.value === '1'">
+            <p class="text-light bg-danger w-100 text-center my-2">No categories can be found</p>
+            <div class="imgNone mt-2 mx-auto d-flex flex-column">
+                <img [src]="'objShown.imgPath'" onerror="this.src='../../../assets/no-data.jpg'" >
+    </div>
+
+        </div>
+    
+        <div class="addCategory" *ngIf="toggler.value === '2'">
+        <app-add-category (addCategory)="addCategory($event)" >
+
+        </app-add-category>
+        </div>
+    </div>
+    <div [ngClass]="selected === 'updateInterval' ? 'updateInterval selected': 'updateInterval'"  *ngIf="updateIntervalValue">
+      
+        <app-update-interval [updateIntervalValue]="updateIntervalValue" (intervalFormEmit)="intervalFormEmit($event)">
+
+        </app-update-interval>
+    </div>
+    <div [ngClass]="selected === 'updateInterval' ? 'updateInterval selected': 'updateInterval'" *ngIf="!updateIntervalValue ">
+        <p class="text-light bg-danger w-100 text-center my-2">Intervals could not be fetched</p>
+        <div class="imgNone mt-2 mx-auto d-flex flex-column">
+            <img [src]="'objShown.imgPath'" onerror="this.src='../../../assets/no-data.jpg'" >
+        </div>
+    </div>
+    <div [ngClass]="selected === 'auctioneers' ? 'auctioneers selected': 'auctioneers'" *ngIf = "auctioneersArray.length">
+        
+       <app-auctioneers-list  [auctioneers]="auctioneersArray" (deleteUser)="deleteUser($event)" (approveAuctioneer)="approveAuctioneer($event)">
+
+       </app-auctioneers-list>
+
+       <div class="my-2 d-flex flex-column justify-content-between align-items-center">
+       <p style="font-size:20px">Delete All Auctioneers</p>
+      <button mat-raised-button (click)="removeAll('auctioneers')" class="py-2">
+        <fa-icon [icon]="faTrashAlt">
+            
+        </fa-icon>
+      </button>
+       </div>
+
+    </div>
+    <div  [ngClass]="selected === 'auctioneers' ? 'auctioneers selected': 'auctioneers'" *ngIf="!auctioneersArray.length ">
+        <p class="text-light bg-danger w-100 text-center my-2">No Auctioneers can be found</p>
+        <div class="imgNone mt-2 mx-auto d-flex flex-column">
+            <img [src]="'objShown.imgPath'" onerror="this.src='../../../assets/no-data.jpg'" >
+        </div>
+    </div>
+    <div [ngClass]="selected === 'bidders' ? 'bidders selected': 'bidders'"  *ngIf = "biddersArray.length">
+       <app-bidders-list  [bidders]="biddersArray" (deleteUser)="deleteUser($event)">
+
+       </app-bidders-list>
+       <div class="my-2 d-flex flex-column justify-content-between align-items-center">
+        <p style="font-size:20px">Delete All Bidders</p>
+       <button mat-raised-button (click)="removeAll('bidders')" class="py-2">
+         <fa-icon [icon]="faTrashAlt">
+             
+         </fa-icon>
+       </button>
+        </div>
+    </div>
+    <div [ngClass]="selected === 'bidders' ? 'bidders selected': 'bidders'" *ngIf="!biddersArray.length ">
+        <p class="text-light bg-danger w-100 text-center my-2">No Bidders can be found</p>
+        <div class="imgNone mt-2 mx-auto d-flex flex-column">
+            <img [src]="'objShown.imgPath'" onerror="this.src='../../../assets/no-data.jpg'" >
+        </div>
+    </div>
+    
+</div>
+
+<div class="togglerForMdSm">
+    <div class="menu" (click)="toggleBtns()" *ngIf="!close">
+        <fa-icon [icon]="faStream"></fa-icon>
+    </div>
+    <div class="menu close" (click)="toggleBtns()" *ngIf="close">
+        <fa-icon [icon]="faTimes"></fa-icon>
+    </div>
+    <mat-button-toggle-group #toggler="matButtonToggleGroup" value="1" [ngClass]="checked ?'btn-checked':'btn-unchecked'">
+        <mat-button-toggle value="1"  (click)="hideSideBar('sidebar')">
+          Admin Profile
+           </mat-button-toggle>
+           <mat-button-toggle value="2" (click)="hideSideBar('profile')">Edit Profile</mat-button-toggle>
+        <mat-button-toggle value="3" (click)="hideSideBar('auctions')">Auctions</mat-button-toggle>
+        
+      
+        <mat-button-toggle value = "4"  (click)="hideSideBar('auctioneers')">
+          Auctioneers
+        </mat-button-toggle>
+        <mat-button-toggle value="5"  (click)="hideSideBar('bidders')">
+           Bidders
+         </mat-button-toggle>
+         <mat-button-toggle value="6"  (click)="hideSideBar('cities')">
+            Cities
+          </mat-button-toggle>
+          <mat-button-toggle value="7"  (click)="hideSideBar('categories')">
+            Categories
+          </mat-button-toggle>
+          <mat-button-toggle value="8"  (click)="hideSideBar('updateInterval')">
+            Update Interval 
+          </mat-button-toggle>
+
+        </mat-button-toggle-group>
+</div>
+

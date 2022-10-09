@@ -1,0 +1,45 @@
+
+  <div class="content d-flex flex-column">
+    <div class="eachRow title  ">
+      <div class="cell">
+        Bidder
+      </div>
+      <div class="cell">
+        Username
+      </div>
+      <div class="cell">
+        Bid
+      </div>
+      <div class="cell">
+        Delete Bid
+      </div>
+    </div>
+    <div class="bids d-flex flex-column">
+
+    <div  *ngFor="let subscriber of displayCol">
+    <div class="eachRow  " [ngClass]="subscriber.username === bidder.username ? 'unique': 'same' ">
+      <div class="cell img">
+       <img [src]="subscriber.image" alt="">
+      </div>
+      <div class="cell">
+        <p>
+          {{ subscriber.username | titlecase}}
+        </p>
+       
+      </div>
+      <div class="cell text-center ">
+        <p style="font-size:12px" class="text-center">
+          {{ subscriber.bid}}
+        </p>
+       
+      </div>
+
+
+      <div class="delete" *ngIf="subscriber.username === bidder.username">
+        <div class="deletes" (click)="removeBid()"><fa-icon [icon]="faTimes"></fa-icon></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>

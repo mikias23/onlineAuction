@@ -1,0 +1,94 @@
+<div class="wrapper">
+
+
+<div class="center d-flex justify-content-center" *ngIf = "auction.format === 'regular'"> 
+
+    <div class="start d-flex flex-column justify-content-center align-items-center">
+        <p class="dateTitle"> Starts </p>
+        <div class="p-3 text-light  actualDate">
+        <fa-icon [icon]="faCalendarDays"></fa-icon>    {{ dateObj.startDate | date: 'dd/MM/yyyy HH:mm z'}}
+        </div>
+ 
+    </div>
+
+    <div class="counter " *ngIf="percent >= 0">
+        <p class="mx-auto my-0 text-center" style="font-size: 12px;">{{coolVar}}</p>
+           <div class="circle">
+           <div class="centerCircle text-center" *ngIf="percent > 0">
+            {{percent}} days
+           </div>
+           <div class="centerCircle text-center" *ngIf="percent == 0">
+            Final Day
+           </div>
+            <svg>
+                <circle cx="40" cy="40" r="40">
+
+                </circle>
+                 
+
+                <circle cx="40" cy="40" r="40" [ngStyle]="{'stroke-dashoffset': strokeLength}">
+
+                </circle>
+
+              </svg>
+
+           </div>
+           <div class="circel" *ngIf="percent < 0" >
+            Auction has ended
+           </div>
+    </div>
+    <div class="end d-flex flex-column">
+        <p class="text-center dateTitle">Ends </p>
+        <div class="p-3 text-center text-light  m-auto actualDate">
+            <fa-icon [icon]="faCalendarDays"></fa-icon>       {{ dateObj.endDate | date: 'dd/MM/yyyy HH:mm z'}}
+        </div>
+    </div>
+</div>
+<div class="center d-flex justify-content-center" *ngIf = "auction.format === 'live'"> 
+
+    <div class="start d-flex flex-column justify-content-center align-items-center">
+        <p> Starts On</p>
+        <div class="p-3 text-light bg-success">
+            {{ dateObj.startDate | date}}
+        </div>
+        
+    </div>
+
+    <div class="counter ">
+        <p class="mx-auto my-0" style="font-size: 12px" *ngIf="!AuctionYetToBegin">Live Auction started</p>
+        <p class="mx-auto my-0" style="font-size: 12px" *ngIf="AuctionYetToBegin">{{coolVar}}</p>
+           <div class="circle">
+           <div class="centerCircle text-center" *ngIf="!AuctionYetToBegin">
+            Live Auction Day
+           </div>
+        
+           <div class="centerCircle text-center" *ngIf="percent>0">
+            {{liveAuctionDay}} day
+           </div>
+     
+            <svg>
+                <circle cx="40" cy="40" r="40">
+
+                </circle>
+                 
+
+                <circle cx="40" cy="40" r="40" [ngStyle]="{'stroke-dashoffset': strokeLength}">
+
+                </circle>
+
+              </svg>
+
+           </div>
+           <div class="circel" *ngIf="percent<0 && checkIfDatePassed >= 0" style="font-size:12px;">
+            Submit Your Bid
+           </div>
+    </div>
+    <div class="end d-flex flex-column">
+        <p class="text-center">Ends On</p>
+        <div class="p-3 text-center text-light bg-danger m-auto">
+            {{ dateObj.endDate | date}}
+        </div>
+    </div>
+</div>
+
+</div>

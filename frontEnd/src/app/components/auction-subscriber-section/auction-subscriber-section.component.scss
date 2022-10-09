@@ -1,0 +1,81 @@
+@import '../../../sass/styles.scss';
+.content {
+    width: 100%;
+
+}
+.img {
+
+    img{
+    width: 50px !important;
+        height: 50px !important;
+        border-radius: 50%;;
+    }
+  
+}
+
+.title {
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  font-weight: 500px;
+  padding: 10px;
+
+  .cell {
+    text-align: center !important;
+    justify-content:center !important;
+    background-color: rgba(255, 0, 0, 0) !important;
+
+  }
+}
+.eachRow {
+    margin: 5px 0;
+   width:100%;
+    background: rgba(0,0,0,.3);
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(4,1fr);
+    .cell {
+        padding: 0px 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+       text-align: center;
+        overflow-wrap: break-word !important;
+
+    
+    }
+
+}
+
+.same {
+    background: dark;
+
+}
+.unique{
+    background-color: rgb(168, 45, 0);
+}
+.delete {
+    @include flex-col;
+
+  
+    cursor: pointer;
+
+    
+    .deletes{
+        width: 30px;
+        color: red;
+        height: 30px;
+        border-radius: 50%;
+        @include flex-col;
+
+        background-color: white;
+        &:hover {
+            background-color: black;
+        }
+    }
+    fa-icon{
+        font-size: 20px !important;
+
+    }
+}

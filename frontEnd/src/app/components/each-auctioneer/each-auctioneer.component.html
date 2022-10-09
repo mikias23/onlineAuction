@@ -1,0 +1,27 @@
+<div class="imgCard">
+ 
+  <div class="approved" *ngIf="auctioneer.approved">
+    <fa-icon [icon]="faCheckCircle"></fa-icon>
+  </div>
+  <p class="titleText">
+      {{ auctioneer.username }}
+  </p>
+  <div class="img">
+    <img src="{{auctioneer.profilePicPath}}" onerror="this.src='../../../assets/default.jpg'" >
+</div>
+
+    <p class="detailText mx-2" style="color:#ccc; font-size: 14px;">
+  {{ auctioneer.bussinessType | titlecase }}
+    </p>
+<div class="d-flex flex-column ">
+      <p class="mx-2 titleText">Auctions <span style="color:rgb(255, 166, 0)"> {{ auctionNumbers }}</span></p>
+    <button class="" (click)="ScrollToAuction()">
+       <fa-icon [icon]="faEye"></fa-icon>
+    </button>
+</div>
+
+
+
+
+
+</div>

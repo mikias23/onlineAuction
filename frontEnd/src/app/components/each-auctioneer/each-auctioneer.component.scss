@@ -1,0 +1,53 @@
+@import '../../../sass/styles.scss';
+.img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+     
+   overflow: hidden;
+    img {
+        width: 80px;
+        height: 80px;
+    }
+}
+.titleText{
+    @include titleFont;
+    @include card-dark;
+    border-radius: 0;;
+    border: 0;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 300;
+   padding: 5px 10px;
+    color: rgb(255, 255, 255);
+}
+.imgCard {
+    @include card-dark;
+    padding: 10px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    width: 150px;
+    overflow: hidden;
+
+    overflow: hidden;
+}
+button{
+  @include custom-btn;
+}
+.approved {
+    position: absolute;
+    left: 5%;
+    top: 0%;
+  
+
+    color: rgb(15, 248, 15);
+    font-size: 25px;
+    z-index: 10000;
+}

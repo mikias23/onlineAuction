@@ -1,0 +1,96 @@
+<div class="center">
+    <div class="ratedNo" *ngIf="ratedNo !==0">
+{{ratedNo}} subscribers rated
+    </div>
+    <div class="ratedNo" *ngIf="ratedNo ===0">
+          No subscriber rated
+        </div>
+    <div class="img">
+        <img src="{{ auction.itemImagePath[0]}}"  onerror="this.src='../../../assets/default.jpg'" >
+    </div>
+
+    <div class="title">
+        
+    </div>
+
+    <div class="subtitle">
+
+    </div>
+    <div class="rating d-flex flex-column justify-content-center align-items-center" *ngIf="ratingsSum > -1">
+      <div class="icon" *ngIf="percentRate">
+<div class="inner">
+  <div class="gray" >
+    <div class="" *ngFor = "let star of arrayStar">
+<fa-icon [icon]="faStar"></fa-icon>
+    </div>
+   
+</div>
+<div class="orange" [ngStyle]="{'width': percentRate}">
+
+    <div class=""  *ngFor = "let star of arrayStar">
+<fa-icon [icon]="faStar"></fa-icon>
+    </div>
+ 
+</div>
+
+</div>
+ 
+
+        <div class="valueRate " *ngIf="ratingsSum > -1">
+            {{ percentRate }}
+        </div>
+      
+      </div>
+   
+      
+
+
+    </div>
+    <div class="rating d-flex flex-column" *ngIf="subscribersRatings.length === 0">
+        <div class="icon" >
+          <div class="grays" >
+              <div class="" *ngFor = "let star of arrayStar">
+     <fa-icon [icon]="faStar"></fa-icon>
+              </div>
+              <div class="notrated" >
+                NR
+               </div>
+        
+          </div>
+
+        </div>
+        
+          
+  
+      </div>
+      <div class="info d-flex flex-column ">
+        <div class="city">
+          City:  <span>{{auction.city}}</span> 
+          </div>
+          <div class="city">
+            Subscribers:  <span>{{auction.subscribers.length}}</span> 
+            </div>
+
+        
+      </div>
+
+      <div class="seeAuction ">
+        <button  (click)="seeAuctioneer($event)">
+          
+          <fa-icon [icon]="faEye"></fa-icon> Auctioneer
+        </button></div>
+        <div class="seeComents ">
+          <button class="btn btn-primary mt-2" style="font-size: 12px;" (click)="seeComments()">
+            
+            <fa-icon [icon]="faEye" class="mx-2"></fa-icon> Comments
+          </button></div>  
+          <div class="showComments" *ngIf="showComment">
+            <div class="" *ngFor="let comment of auction.ratings">
+
+              <p class="commentPara">
+                {{ comment.comment}}
+              </p>
+            </div>
+          </div>
+   
+       </div>

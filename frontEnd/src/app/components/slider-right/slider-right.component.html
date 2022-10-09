@@ -1,0 +1,6 @@
+<div class="slider" *ngIf="type === 'left'" (click)="leftClicked()">
+   <fa-icon [icon]="faArrowLeft"></fa-icon>
+</div>
+<div class="slider" *ngIf="type !== 'left'" (click)="rightClicked()">
+    <fa-icon [icon]="faArrowRight"></fa-icon>
+ </div>

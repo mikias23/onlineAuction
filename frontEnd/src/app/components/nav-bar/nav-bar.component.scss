@@ -1,0 +1,135 @@
+@import '../../../sass/styles.scss';
+
+*{
+    box-sizing: border-box !important;
+}
+
+#delete {
+      color:red;
+}
+.menu {
+    display: none;
+}
+.header{
+    width: 100vw !important;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: $box-shadow;
+    @include flex-row;
+    justify-content: space-between !important;
+    h4 {
+        a{
+            color: black;
+            padding: 10px 20px;
+            font-size: 16px !important;
+            font-weight: 400;
+            box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: 0.1);
+            border-radius: 5px;
+   
+        }
+
+    }
+    #links ul {
+        @include flex-row;
+
+        li{
+            margin-right: 30px;
+            border-bottom: 1px solid rgb(252, 252, 252);
+
+            &:hover {
+                
+                border-bottom: 1px solid #444;
+                a {
+                    color: black;
+                }
+            }
+            a {
+                color: #444;
+
+            ;
+            }
+        }
+    }
+}  
+
+
+
+
+
+@include mediaMd{
+ 
+    .container {
+        @include flex-col;
+        align-items: center !important;
+        width: 100%;
+        z-index: 10000000;
+
+        
+    }
+    li
+    {
+        z-index: 10000000;
+    }
+    .menu {
+        display: flex !important;
+        z-index :100000;
+        position: absolute;
+        right: 5%;
+        background-color: #333;
+        padding: 10px;
+        box-shadow:$box-shadow;
+        color: white;
+        &:hover {
+            background-color: white;
+            color:#222;
+            cursor: pointer;
+        }
+    }
+    .close {
+        color: red;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        @include flex-row;
+        border-radius: 50%
+    }
+    .header{
+        @include flex-col;
+        align-items: flex-start;
+        div {
+            margin-bottom: 20px;
+        }
+    }
+ 
+    #links {
+        display: none;
+
+    }
+    .show {
+        display:  flex !important;
+        
+    }
+    #links ul {
+      
+
+       display: flex !important;
+       flex-direction: column !important;
+        align-items: flex-start !important;
+     
+         li
+         {
+            border: 1px solid rgb(255, 255, 255) !important;
+
+             &:hover {
+                border-bottom: 1px solid #444 !important;
+
+             }
+         }
+
+
+    }
+
+
+
+}

@@ -1,0 +1,38 @@
+<form [formGroup]="editForm" (ngSubmit)="submitEdit()" class=" d-flex flex-column">
+<div class="fields">
+    <div class="d-flex flex-row align-items-center" *ngFor="let field of displayableFields; let i = index">
+
+       <div class="" *ngIf="i !==5">
+        <mat-form-field  floatLabel = "auto" hideRequiredMarker appearance="fill">
+            <mat-label style="color: white;">{{field | titlecase}}</mat-label>
+            <input matInput  type="text" style="color: rgb(228, 180, 21);" formControlName="{{field}}"  placeholder="{{user[field]}}" readonly="{{!edit[i]}}" *ngIf="field !== 'password'"/>
+            <input matInput  type="password" style="color: rgb(228, 180, 21);" formControlName="{{field}}"  placeholder="{{user[field]}}" readonly="{{!edit[i]}}" *ngIf="field === 'password'"/>
+            
+        </mat-form-field>  
+        
+         <div class="" (click)="toggle(field, i)">
+
+            <button class="btn btn-info" *ngIf="!edit[i]">Edit</button>
+            <button class="btn btn-danger" *ngIf="edit[i]">Cancel</button>
+         </div>
+        </div>
+        
+       <div class="" *ngIf="i == 5 && edit[4] ">
+        <mat-form-field  floatLabel = "auto" hideRequiredMarker appearance="fill">
+            <mat-label style="color: white;">{{field | titlecase}}</mat-label>
+            <input matInput  type="password" style="color: rgb(228, 180, 21);" formControlName="{{field}}"  placeholder="{{user[field]}}" readonly="{{!edit[4]}}" />
+    
+            
+        </mat-form-field>  
+        
+  
+        </div>
+
+    </div>
+
+    
+</div>
+<div class="submit" >
+    <button  type="submit" class="btn btn-primary" [disabled]="!submit || editForm.invalid">Submit Change</button>
+</div>
+</form>

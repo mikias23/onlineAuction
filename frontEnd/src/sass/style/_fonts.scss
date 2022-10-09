@@ -1,0 +1,15 @@
+$box-shadow: 10px 10px 15px rgba(0,0,0,.4);
+$cool-bg-darker:rgba(28, 44, 61, 0.826);
+$cool-bg: rgba(76, 116, 159, 0.632);
+@mixin titleFont{
+    font-weight: 300;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(255, 255, 255);
+}
+@mixin subTitleFont{
+    font-weight: 300;
+    font-size: 12px;
+    font-family: 'Ubuntu', sans-serif;
+    color: rgba(255, 255, 255, 0.63);
+}

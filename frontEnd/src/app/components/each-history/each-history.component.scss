@@ -1,0 +1,140 @@
+@import '../../../sass/styles.scss';
+
+.commentPara {
+    color: white;
+    font-size: 12px;
+    padding: 10px;
+    background-color: #222;
+    text-transform: capitalize;
+    text-align: left;
+    margin: 10px 0;
+}
+.ratedNo{
+
+    width: 100%;
+    padding: 5px;
+    color:#222;
+    font-size: 12px;
+
+   
+    span{
+        color: rgb(255, 255, 255);
+         padding: 5px;
+         width: 20px;
+         height: 20px;
+         border-radius: 50%;
+         margin-right: 5px;
+         background-color: darkblue;
+        @include flex-row
+
+    }
+    color: white;
+}
+.valueRate{
+    color: rgb(255, 255, 255);
+    position: absolute;
+    top: -10%;
+    right: 50%;
+    transform: translate(50%, 50%);
+}
+.center {
+    position: relative;
+  width: 100%;
+  overflow: hidden;
+@include card-dark;
+border-radius: 10px;
+  border-radius: 5px;
+     text-align: center;
+     padding: 10px;
+    img {
+        width: 80px;
+        height: 80px;
+        margin: auto;
+        border-radius: 50%;
+    }
+}
+
+.icon{
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    @include flex-row;
+    height: 50px;
+    background-color: rgb(13, 13, 14);
+    margin: 10px 0;
+
+
+
+   
+    .grays{
+        @include flex-row;
+        fa-icon {
+            color: gray;
+            font-size: 14px;
+        }
+    }
+
+    .inner {
+        position: relative;
+        width: 100px;
+     
+        .gray {
+           display: flex;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            font-size: 15px;
+            color: white
+
+
+        }
+        .orange{
+           display: flex;
+            position: absolute;
+            left: 0%;
+          
+            top: 0%;
+            color: orange;
+            font-size: 15px;
+            overflow: hidden;
+            width: 100%;
+          
+        }
+        
+
+    }
+
+}
+.rating {
+    width: 100%;
+}
+.info{
+    font-size: 12px;
+    margin-top: 10px;
+    color: rgb(49, 49, 49);
+    span {
+        color: rgb(255, 255, 255);
+    }
+}
+.notrated {
+    font-size: 12px;
+    color: red;
+}
+.seeAuction {
+    width: 100%;
+    text-align: center;
+}
+.city{
+    text-align: center;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.city {
+    color: white;
+}
+button {
+    @include card-dark;
+    
+}

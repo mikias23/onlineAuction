@@ -1,0 +1,9 @@
+<div class="" *ngIf = "data.type === 'confirm'">
+
+    <h2 mat-dialog-title> {{ data.message }}</h2>
+  
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close mat-dialog-close = "true"> Yes</button>
+        <button mat-button mat-dialog-close mat-dialog-close = "false"> No</button>
+    </mat-dialog-actions>
+</div>

@@ -1,0 +1,31 @@
+@import '../../../sass/styles.scss';
+fa-icon {
+    font-size:25px;
+}
+.eski {
+    font-size: 25px;
+    fa-icon{
+        font-size: 30px;
+    }
+}
+.donw{
+    color: rgb(62, 0, 0) !important;
+    font-size: 20px !important;
+    &:hover {
+        font-size: 25px !important;
+        cursor: pointer;
+    }
+}
+.down {
+    color: rgb(0, 0, 0) !important;
+    font-size: 20px !important;
+    &:hover {
+        font-size: 25px !important;
+        cursor: pointer;
+    }
+
+}
+.auctionId{
+    @include card-dark;
+    border-radius: 10px;
+}

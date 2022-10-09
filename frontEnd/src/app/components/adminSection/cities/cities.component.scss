@@ -1,0 +1,53 @@
+
+img {
+   width: 100px;
+   height: 70px;
+}
+table {
+    fa-icon {
+      
+        &:hover {
+            font-size: 2em;
+            cursor: pointer;
+        }
+    }
+    width: 100%;
+    img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+     }
+     th {
+        color: orangered;
+    }
+    
+     td, th{
+        position: relative;
+        max-width: 70px !important;
+      
+        border-right: 1px solid gray;
+        border-bottom: 1px solid gray;
+        text-align: center;
+        padding: 10px 5px ;
+        overflow: hidden;
+        &:hover {
+            overflow: visible;
+
+            z-index: 100 !important;
+            max-width: 500px;
+        }
+        
+        fa-icon {
+            position: absolute;
+            top: 50%;
+             transform: translateY(-50%);
+            color: red !important;
+        }
+       
+    }
+    th{
+        max-width: 70px !important;
+        border: 1px solid white;
+    }
+   
+}

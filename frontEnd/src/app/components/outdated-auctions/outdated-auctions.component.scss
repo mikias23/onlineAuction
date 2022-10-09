@@ -1,0 +1,8 @@
+.auctionsList{
+    display: grid;
+    grid-gap: 10px !important;
+    place-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    height: 300px !important;
+
+}

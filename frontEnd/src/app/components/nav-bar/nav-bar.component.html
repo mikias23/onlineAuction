@@ -1,0 +1,46 @@
+<div class="container header d-flex justify-content-between ">
+    <div class="title">
+      <h4>
+        <a class="navbar-brand" [routerLink] = "['/']"> Ethio Online Auction</a>
+      </h4>
+    </div>
+  
+    <div [ngClass]="links ? 'show': ' '" id="links">
+      <ul class="nav navbar-nav">
+  
+        <li class="nav-item" [routerLinkActive]="['active']"  [routerLinkActiveOptions]="{exact: true}" >
+          <a class="nav-link" [routerLink] = "['/']" >Home</a>
+        </li>
+        <li  *ngIf = "!mainService.loggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" [routerLink] = "['/login']">Login</a>
+        </li>
+        <li  *ngIf = "!mainService.loggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" [routerLink] = "['/register']">Sign Up</a>
+        </li>
+        <li  *ngIf = "mainService.loggedIn() && mainService.userType() === 'admin'" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" [routerLink] = "['/adminProfile']">Profile Admin</a>
+        </li>
+      
+        <li  *ngIf = "mainService.userType() === 'auctioneer'" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link" [routerLink] = "['/auctioneerProfile']">Profile Auctioneer</a>
+          </li>  
+           <li  *ngIf = "mainService.userType() === 'bidder'" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" [routerLink] = "['/bidderProfile']">Profile Bidder</a>
+        </li>
+        <li  *ngIf = "mainService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" (click)="userLoggedOut()">Logout</a>
+        </li>
+        <li  *ngIf = "mainService.userType() === 'bidder'" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="notification">
+           <app-notification>
+            
+           </app-notification>
+        </li>
+        </ul>
+    </div>
+    <div class="menu close" (click)="toggleBtns()" *ngIf="links">
+      <fa-icon [icon]="faTimes"></fa-icon>
+       </div>
+       <div class="menu" (click)="toggleBtns()" *ngIf="!links">
+        <fa-icon [icon]="faStream"></fa-icon>
+         </div>
+</div>

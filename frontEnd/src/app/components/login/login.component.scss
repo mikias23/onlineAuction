@@ -1,0 +1,42 @@
+@import '../../../sass/styles.scss';
+.center{
+  width: 100%;
+  height: 100vh;
+  @include card-dark;
+  border-radius: 0;
+  border: 0;
+  padding: 20px 0;
+  background-color: rgba(2, 12, 41, 0.824);
+}
+mat-radio-group
+{
+  background-color: white;
+  padding: 10px;
+  color: black;
+}
+input {
+  @include card-dark;
+  height: 30px;
+  padding: 5px 10px;
+  }
+
+form {
+  width: 33%;
+  margin:0px auto;
+  @include flex-col;
+  @include card-dark;
+  background-color:rgba(0, 0, 0, 0.199);
+  border-radius: 10px;
+  padding: 20px 0;
+}
+mat-label {
+  color: white;
+}
+
+.title {
+  @include card-dark;
+  background-color: $cool-bg-darker;
+  border-radius: 0;
+  padding: 10px;
+  margin: 20px 0;
+}

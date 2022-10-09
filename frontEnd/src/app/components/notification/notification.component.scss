@@ -1,0 +1,29 @@
+@import '../../../sass/styles.scss';
+a{
+    text-decoration: none;
+}
+.center {
+    position: relative;
+}
+.notify {
+    position: absolute;
+    width: 200px;
+    min-height: 100px;
+    z-index: 10000;
+    padding: 10px;
+    left: -50%;
+    top:100%;
+    
+    overflow-wrap: break-word;
+    box-shadow: $box-shadow;
+    overflow-y: auto;
+
+    background-color: rgb(255, 255, 255);
+  
+    img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+
+    }
+}

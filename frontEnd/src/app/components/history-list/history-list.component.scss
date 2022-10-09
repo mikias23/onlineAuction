@@ -1,0 +1,46 @@
+img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+}
+td {
+    text-align: center;
+  
+   .eye{
+    fa-icon {
+        color: royalblue !important;
+
+       
+      }
+   }
+       
+}
+.approved{
+    fa-icon{
+        font-size:24px !important;
+        color: green;
+
+    }
+}
+.notYet {
+    fa-icon{
+        font-size:14px !important;
+        color: grey;
+        &:hover {
+            color: rgb(48, 71, 13);
+        }
+
+    }
+}
+table {
+    width: 100%;
+    fa-icon {
+        font-size: 14px;
+        color: red;
+        &:hover {
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+    }
+}

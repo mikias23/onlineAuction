@@ -1,0 +1,78 @@
+
+<app-fetch (categories)="categories($event)" (cities)="cities($event)">
+
+</app-fetch>
+
+<div class="center d-flex flex-column ">
+
+  <div class="title">
+    Find auctions that matches your need 
+  </div>
+  <div class="filterValue d-flex flex-row flex-wrap justify-content-center align-items-center my-3">
+    <div class="eachValue mx-2"  *ngFor="let value of filterValue; let i = index" [ngClass]="(selectedIndex[currentTypeSelected]) === i ? 'selectedValue': 'normal'"  (click)="changeValue(i, currentTypeSelected)">
+       {{value | titlecase}}
+         </div>
+  </div>
+
+      <div class="filterType d-flex ">
+        <div class="eachType" *ngFor="let type of filterType; let i = index" [ngSwitch]="type">
+            <div class="d-flex flex-column align-items-center justify-content-center" 
+            [ngClass]="currentTypeSelected === i ? 'selected': 'normal'" 
+            *ngSwitchCase="'city'" >
+             <p class="text-warning m-0">City</p>
+                 <div class="icon">
+                     <fa-icon [icon]="faCity"></fa-icon>
+                 </div> 
+ 
+                 <p  class="text-center">{{ citiesArray[selectedIndex[i]] | titlecase}}</p>
+ 
+                 <button mat-raised-button *ngIf = "currentTypeSelected !== i" (click)="changeType(i)">Choose</button>
+            </div> 
+           <div class="d-flex flex-column align-items-center justify-content-center" 
+           [ngClass]="currentTypeSelected === i ? 'selected': 'normal'" 
+           *ngSwitchCase="'type'" >
+            <p class="text-warning m-0">Auction Type</p>
+                <div class="icon">
+<fa-icon [icon]="faTags"></fa-icon>
+                </div> 
+
+                <p  class="text-center">{{ auctionType[selectedIndex[i]] | titlecase}}</p>
+
+                <button mat-raised-button *ngIf = "currentTypeSelected !== i" (click)="changeType(i)">Choose</button>
+           </div> 
+           <div class="d-flex flex-column align-items-center justify-content-center" 
+           [ngClass]="currentTypeSelected === i ? 'selected': 'normal'" 
+           *ngSwitchCase="'category'" >
+            <p class="text-warning m-0">Categories</p>
+                <div class="icon">
+                  <fa-icon [icon]="faTag"></fa-icon>
+
+                </div> 
+
+                <p  class="text-center">{{ categoriesArray[selectedIndex[i]] | titlecase}}</p>
+
+                <button mat-raised-button *ngIf = "currentTypeSelected !== i" (click)="changeType(i)">Choose</button>
+           </div> 
+   
+           <div class="d-flex flex-column align-items-center justify-content-center" 
+           [ngClass]="currentTypeSelected === i ? 'selected': 'normal'" 
+           *ngSwitchCase="'format'" >
+            <p class="text-warning m-0">Format</p>
+                <div class="icon">
+
+                </div> 
+
+                <p  class="text-center"> {{ auctionFormat[selectedIndex[i]] }}</p>
+                <button mat-raised-button *ngIf = "currentTypeSelected !== i" (click)="changeType(i)">Choose</button>
+           </div> 
+
+      
+              
+
+        </div>
+      </div>
+
+
+  <div class="searchBtn" (click)="emitValuesWithType()">
+    <fa-icon [icon]="faSearch"></fa-icon > </div>
+</div>

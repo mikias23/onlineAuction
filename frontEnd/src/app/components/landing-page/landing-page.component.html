@@ -1,0 +1,112 @@
+<div class="center">  
+    <div class="left">
+
+ <div class="header">
+    <p class="theTitle">Auction anything from  anywhere <br> with Ethio Online Auction.
+
+    <p class="info">An Affordable auction fee for government  <br>and private auctioneers.Completely   <br> free subscription and bidding for Bidders. </p>
+ </div>
+    <div class="searchOption">
+        <div class="btnToggle">
+            
+           <button  (click)="typeSwitched('government')" [ngClass]="typeSelected === 'government' ? 'selectedType': 'auctioneerType'">
+             Government
+           </button>
+           <button [ngClass]="typeSelected === 'private' ? 'selectedTypeAuctioneer': 'auctioneerType'" (click)="typeSwitched('private')" > 
+            Private
+           </button>
+        </div>
+        <div class="searchBar">
+            <input type="text" class="form-control" placeholder="Search Auctioneers" (blur) ="userInput($event)">
+            <button [disabled]="!username" class="btn-format searchButton" (click)="search()" > <fa-icon [icon]="faSearch" ></fa-icon> </button>
+
+        </div>
+    </div>
+    <div class="img">
+      <img src="../../../assets/auctionReal.png" alt="">
+    </div>
+</div>
+<div class="right">
+
+  <div class="top">
+<div class="">
+  <div class="category">
+   Furnitures
+  </div>
+   <div class="img">
+    <img src="../../../assets/chaair.png" alt="">
+
+   </div>
+   <div class="goto" (click)="goTo()">
+    <button mat-button (click)="emitAuctionCategoryFunc('Furnitures')"> <fa-icon [icon]="faSearch"> n</fa-icon></button>
+   </div>
+
+</div>
+<div class="">
+  <div class="category">
+   Electronics
+  </div>
+  <div class="img">
+    <img src="../../../assets/electronics.png" alt="">
+
+   </div>
+   <div class="goto" (click)="goTo()">
+    <button mat-button (click)="emitAuctionCategoryFunc('Electronics')"> <fa-icon [icon]="faSearch"> Find Auction</fa-icon></button>
+   </div>
+</div>
+<div class="">
+  <div class="category">
+    Vehicles
+  </div>
+   <div class="img">
+    <img src="../../../assets/cars.png" alt="">
+   </div>
+   <div class="goto" (click)="goTo()">
+    <button mat-button (click)="emitAuctionCategoryFunc('Vehicles')"> <fa-icon [icon]="faSearch"> Find Auction</fa-icon></button>
+   </div>
+</div>
+<div class="">
+  <div class="category">
+    Real States
+  </div>
+   <div class="img">
+    <img src="../../../assets/houses.png" alt="">
+   </div>
+   <div class="goto" (click)="goTo()">
+    <button mat-button (click)="emitAuctionCategoryFunc('Real State')"> <fa-icon [icon]="faSearch"> Find Auction</fa-icon></button>
+   </div>
+</div>
+  </div>
+  <div class="bottom">
+       <div class="auctioneer">
+        <div class="figure">
+          {{ auctioneersArrayLength }}
+
+        </div>
+       <div class="title">
+           Auctioneers
+       </div>
+       </div>
+       <div class="bidders">
+        <div class="figure">
+          {{ biddersArrayLength }}
+  
+        </div>
+       <div class="title">
+            Bidders
+       </div>
+       </div>
+       <div class="auctions">
+        <div class="figure">
+          {{ auctionsArrayLength }}
+        </div>
+       <div class="title">
+        Auctions
+       </div>
+       </div>
+  </div>
+</div>
+</div>
+<app-fetch (auctions)="auctions($event)" (bidders)="bidders($event)" (auctioneers)="auctioneers($event)">
+
+</app-fetch>

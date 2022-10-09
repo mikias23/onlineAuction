@@ -1,0 +1,77 @@
+@import '../../../sass/styles.scss';
+.searchBtn{
+   
+    margin: 30px auto;
+    background-color: $cool-bg-darker;
+    padding: 10px 20px;
+    &:hover {
+        cursor: pointer;
+        background-color:#ccc;
+    }
+}
+.title {
+    @include card-dark;
+ border-radius: 20px;
+    padding: 5px;
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    
+}
+@include mediaSm {
+    .title {
+        width: 100%;font-size: 20px;
+    }
+}
+.eachType {
+    background-color: ($cool-bg-darker, .3);
+
+    width: 150px;
+    height: 150px !important;
+    margin: 5px ;
+    .icon {
+        width: 60px;
+        height: 60px;
+        @include flex-col;
+        border-radius: 50%;
+        font-size: 50px;
+        
+    }
+    @include card-dark;
+        border-radius: 0;
+        border: 0;
+    .selected {
+       background-color: rgba(0, 67, 0, 0.179);
+       height: 150px !important;
+
+        box-shadow: 10px 10px 20px rgba(0,0,0,.3);
+    }
+}
+.eachValue {
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,.3);
+    color: white;
+    &:hover {
+        cursor: pointer;
+        box-shadow: 10px 10px 20px rgba(0,0,0,.3);
+        background-color: green !important;
+
+
+    }
+ 
+}
+.filterType{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.selectedValue {
+    box-shadow: 10px 10px 20px rgba(0,0,0,.3);
+
+    background-color: green !important;
+}

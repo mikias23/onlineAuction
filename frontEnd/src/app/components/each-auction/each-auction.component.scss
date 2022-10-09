@@ -1,0 +1,58 @@
+@import '../../../sass/styles.scss';
+img {
+    max-width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.center {
+    @include card-dark;
+    border-radius: 10px;
+    padding: 10px;
+}
+.img {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    &::before{
+        @include after;
+        background-color: rgba(0,0,0,.2);
+    }
+}
+
+.sub-title {
+    font-size: 14px;
+    margin: 10px 10px;
+
+}
+.category{
+    font-size: 14px;
+    font-weight: 500;
+}
+label, .label , mat-label{
+    color: white;
+}
+
+.title {
+  
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    width: auto;
+}
+
+.danger {
+    color: red;
+    padding: 5px;
+}
+.orange {
+   @include card-dark;
+   padding: 5px;
+   border-radius: 10px;
+   color: rgb(255, 234, 2);
+}
+.danger {
+    color: red ;
+    padding: 10px;
+}

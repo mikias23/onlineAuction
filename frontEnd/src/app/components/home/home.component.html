@@ -1,0 +1,76 @@
+<div class="center" >
+
+    <app-fetch (auctioneers)="auctioneer($event)" (auctions)="auctions($event)" (auctionsHistory)="auctionsHistory($event)">
+
+    </app-fetch>
+
+
+
+<div class="landing-page">
+    <app-landing-page (emitUsername)="emitUsername($event)" (emitAuctionCategory)="emitAuctionCategory($event)">
+
+    </app-landing-page>
+</div>
+<div class="help">
+    <app-help>
+    </app-help>
+</div>
+
+<div class="sectionAuctioneers">
+    <p class="title">Auctioneers</p>
+    <div  *ngIf = "filter">
+        <div class="mx-2 p-2 bg-success" (click)="backToAll()" style="z-index: 10000;cursor: pointer; font-size: 25px ; color: white;">
+            <fa-icon [icon]="faAngleDoubleLeft"></fa-icon> <span class="mx-2">Return</span></div>
+
+    </div>
+    <div class="section-auctioneers d-flex flex-column justify-content-center w-100" *ngIf="auctioneers.length == 0">
+        <p>No Auctioneers can be found </p>
+        <img src="../../../assets/no-data.jpg" alt="">
+     </div>
+
+<div class="section-auctioneers" *ngIf="auctioneers.length" #auctioneersss >
+
+    <div class="left" *ngIf ="auctioneersArray.length > 7">
+        <app-slider-right [type]="'left'" (leftEmit)="leftClicked()">
+    
+        </app-slider-right>
+      </div>
+      <div class="right" *ngIf ="auctioneersArray.length > 7">
+        <app-slider-right [type]="'right'" (rightEmit)="rightClicked()" >
+    
+        </app-slider-right>
+      </div> 
+    <ng-container *ngFor="let auctioneer of auctioneers">
+        
+
+     <app-each-auctioneer [auctioneer]="auctioneer" [auctions]="auctionsArray" (scrollToAuctionSection)="scrollToAuctionSection($event)">
+
+     </app-each-auctioneer>
+    </ng-container>
+</div>
+
+
+</div>
+<!-- <div class="gettingStarted">
+    
+</div> -->
+<div class="filter-auctions">
+    <app-filter-auctions (emitFilterObj)="emitFilterObj($event)">
+
+    </app-filter-auctions>
+</div>
+<div class="auctions" #auctionsss >
+    <app-auctions-display [filter]="objFilter">
+    
+    </app-auctions-display>
+</div>
+<p class="title">Outdated Auctions and ratings</p>
+<div class="outdatedAuctions">
+
+    <div *ngFor="let auctionHist of auctionsHistoryArray">
+        <app-each-history [auction]="auctionHist" (auctioneerIdEmit)="auctioneerIdEmit($event)">
+            
+        </app-each-history>
+    </div>
+</div>
+</div>

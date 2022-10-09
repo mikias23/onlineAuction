@@ -1,0 +1,55 @@
+
+<div class="center">
+
+<div class="prices">
+    Prices are In Birr !
+</div>
+<br>
+<br>
+        <div class="eachItem">
+            <div class="img">
+                <div class="title">
+                <p style="font-size: 14px;">
+                    <span class="key">Item Name </span>   <span class="value">    {{itemInfo.name[itemIndex]}} </span> </p>    
+                          </div>
+                <img [src]="itemInfo.imagePath[itemIndex]" onerror="this.src='../../../assets/download.png'" >
+            </div>
+            <div class="details d-flex flex-column w-100 mt-5 align-items-center justify-content-between">
+                <div class="sub d-flex flex-row justify-content-between">
+                    <div class="eachDetail d-flex flex-row ">
+                     <p class="key">Item Price</p>  <p class="value">{{itemInfo.price[itemIndex]}} </p> 
+                    </div>
+                    <div class="eachDetail  d-flex flex-row mx-2">
+                        <p class="key">Qty</p>  <p class="value">{{itemInfo.quantity[itemIndex]}}  </p> 
+                       </div>
+              
+                </div>
+                <div class="mt-2 eachDetail d-flex flex-row">
+                    <p class="key">Item Condition</p>  <p class="value">{{itemInfo.condition[itemIndex] | titlecase}} </p> 
+                   </div>
+            </div>
+    
+            <div class="sliders left" (click)="slideLeft()" *ngIf="checkImageLength > 1">
+                <fa-icon [icon]="faArrowLeft">
+
+                </fa-icon>
+            </div>
+            <div class="sliders right" (click)="slideRight()" *ngIf="checkImageLength > 1">
+                <fa-icon [icon]="faArrowRight">
+
+                </fa-icon>
+            </div>
+
+    </div>
+    <div class="eachDetail another d-flex flex-row ">
+        <p class="key"> Auction Items are</p>  <p class="value">    {{auction.condition.length
+        }} </p> 
+       </div>
+
+        <div class="baseBid text-center ">
+          Starting Bid Price <span class="text-warning">{{auction.startingBid}}</span>  
+        </div>
+        
+</div>
+
+

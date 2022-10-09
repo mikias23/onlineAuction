@@ -1,0 +1,62 @@
+@import '../../../sass/styles.scss';
+.center {
+    display: grid;
+    width: 80%;
+    margin-top: 50px;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    & > div {
+        position: relative;
+   height: 320px;
+   width: 420px;
+   @include card-dark;
+   @include flex-row;
+   overflow: hidden;
+   .detail {
+    width: 210px;
+    height: 100%;
+    padding: 10px ;
+    .titleInner {
+        font-size: 16px;
+        @include card-dark;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    p{
+        font-size: 12px;
+        font-weight: 300;
+    }
+   }
+   .img {
+  
+    
+    img{
+        width: 210px;
+        height: 100%;
+    }
+   }
+    }
+}
+@include mediaMd{
+    .center {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@include mediaSm{
+    .center {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+}
+
+h4 {
+    font-weight: 300;
+    @include card-dark;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+}

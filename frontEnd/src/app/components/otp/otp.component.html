@@ -1,0 +1,13 @@
+<div class="center">
+    <h4 *ngIf="type !== 'code'">Enter Phone</h4> 
+    <h4 *ngIf="type == 'code'">Enter Code Sent To Your Phone</h4> 
+    <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="config">
+        
+    </ng-otp-input>
+   <button mat-raised-button (click)="handleClick()" class="btn btn-success mt-4" *ngIf="type !== 'code'" >
+        Next
+    </button> 
+    <button mat-raised-button (click)="handleClick()" class="btn btn-success mt-4" *ngIf="type == 'code'" >
+        Verify
+    </button> 
+</div>

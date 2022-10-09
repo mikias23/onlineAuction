@@ -1,0 +1,46 @@
+img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+}
+fa-icon {
+    color: red;
+    &:hover {
+        font-size: 2em;
+        cursor: pointer;
+    }
+}
+table {
+    width: 100%;
+    
+    .special{
+        z-index: 10000;
+
+    }
+     td{
+        
+        max-width: 80px !important;
+        background-color: black;
+        color: white;
+        border-bottom: 1px solid white;
+        text-align: center;
+        padding: 10px 5px ;
+        overflow: hidden;
+        &:hover {
+            overflow: visible;
+
+        }
+        position: relative;
+fa-icon {
+    position: absolute;
+    top: 0%;
+}
+       
+    }
+    th{
+        max-width: 70px !important;
+        border: 1px solid white;
+    }
+   
+}

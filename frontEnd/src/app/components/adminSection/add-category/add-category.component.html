@@ -1,0 +1,13 @@
+<form [formGroup]="categoryForm" (ngSubmit)="saveCity()">
+
+        <div class="text-secondary d-flex flex-column w-75 m-auto">
+   
+     
+                 <div class="form-group">
+                    <input type="text" formControlName="name" placeholder="Enter Category" class="form-control my-2">
+                 </div>
+         
+                 <button type="submit" class="btn btn-primary w-50 m-auto mt-1" [disabled]="categoryForm.invalid">Save </button>
+        
+        </div>
+      </form>

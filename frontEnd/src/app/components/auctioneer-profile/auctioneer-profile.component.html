@@ -1,0 +1,90 @@
+<div class="wrapper">
+
+    <app-fetch (auctions)="auctions($event) " (auctionsHistory)="auctionsHistory($event)"></app-fetch>
+    <div class ="topnav" *ngIf = "sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <div class="menuIcon" *ngIf = "!sidenav.opened">
+            <mat-icon>menu</mat-icon>
+        </div>
+
+    
+     </div>
+
+     <mat-sidenav-container>
+    
+        <mat-sidenav #sidenav = "matSidenav">
+            
+            <div class="close" *ngIf = "sidenav.opened && sidenav.mode === 'over'" (click)="sidenav.toggle()">
+                <mat-icon>close</mat-icon>
+        
+            </div>
+
+            <div class="showProfile">
+                <div class="img">
+                    <img [src]="auctioneer.profilePicPath" onerror="this.src='../../../assets/default.jpg'" >
+                </div>
+                <div class="info my-2 text-center">
+                        {{auctioneer.username | titlecase}}
+                </div>
+            </div>
+
+            <mat-button-toggle-group #toggler="matButtonToggleGroup" value="1">
+                <mat-button-toggle value="1">
+                    Your Auctions
+                 </mat-button-toggle>
+            
+                <mat-button-toggle value="2" (click)="hideSideBar()">Edit Profile</mat-button-toggle>
+                
+              
+                <mat-button-toggle value = "3"  (click)="hideSideBar()">
+                  Post Auction
+                </mat-button-toggle>
+                <mat-button-toggle value = "4"  (click)="deactivateAccount()">
+                    Deactivate account
+                  </mat-button-toggle>
+                </mat-button-toggle-group>
+                
+        </mat-sidenav>
+       
+        <mat-sidenav-content>
+
+            <div class="" *ngIf="toggler.value === '1'">
+                <div class="auctionsList" *ngIf ="auctioneerAuctions.length !== 0">
+                  
+                    <div class="" *ngFor = "let auction of   auctioneerAuctions
+                    ">
+                      <app-each-auction [auction]="auction" [auctioneer]="auctioneer" (auctionDelete)="auctionDelete($event)">
+                      </app-each-auction>
+                    </div>
+                  </div>
+                  <div class="noImage" *ngIf ="auctioneerAuctions.length === 0">
+                  
+                    <h4 class="text-light bg-danger p-2 text-center">{{ auctioneer.username}} , you have not posted any Auction yet </h4>
+                       <div class="">
+                          <img src="../../.././assets/no-data.jpg" alt="">
+                       </div>
+                 
+                  </div>
+                
+            </div>
+            <div class="editProfile" *ngIf="toggler.value === '2'">
+                <h4 class="text-center align-items-center text-light">Edit Profile</h4>
+                <app-edit-profile [user]="auctioneer" [type]="'auctioneer'" (NewUser)="newUser($event)">
+
+                </app-edit-profile>
+            </div>
+            <div class="post-auction" *ngIf="toggler.value === '3'">
+                <app-post-auction >
+    
+                </app-post-auction>
+                
+            </div>
+            <div class="" *ngIf="toggler.value === '4'">
+                <app-outdated-auctions [auctioneerHistory]="auctioneerHistory">
+
+                </app-outdated-auctions>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+
+

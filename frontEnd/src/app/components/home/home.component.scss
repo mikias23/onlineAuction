@@ -1,0 +1,133 @@
+@import '../../../sass/styles.scss';
+.center {
+
+    @include flex-col;
+    width: 100%;
+    margin: auto;
+    height: 100%;
+    @include card-dark;
+    background-color: rgb(0, 0, 0,.2);
+    
+}
+.landing-page{
+    width: 100%;
+    padding: 0 10px;
+    height: 600px;
+}
+.title {
+    font-size: 25px;
+    font-weight: 300;
+    @include card-dark;
+    border: 0;
+    width: auto;
+    text-align: center;
+    border-radius: 0;
+    padding: 10px 20px;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.527);
+    margin: 50px 0;
+}
+
+.auctions {
+
+    width: 80%;
+    display: block;
+    margin: 100px 0;
+
+}
+.gettingStarted{
+    height: 500px;
+    width: 100%;
+}
+.section-auctioneers {
+    position: relative;
+    display: grid;
+
+ place-items: center;
+  align-items: center;
+  justify-items: center;
+    width: 100%;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+ 
+}
+.sectionAuctioneers{
+    margin: auto;
+    margin-bottom : 100px;
+       width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    img {
+        width:600px;
+        height: 300px;
+    }
+    .left, .right {
+        position: absolute;
+    
+            top: 50%;
+            
+            transform: translateY(-50%);
+     }
+     .left {
+        left: -10%;
+     }
+     .right {
+        right: -10%;
+     }
+}
+
+@include mediaMd{ 
+    :host
+    {
+        width: 100%;
+
+    }
+
+}
+.outdatedAuctions {
+    width: 80%;
+    display: grid;
+    grid-gap: 15px;
+    place-items: center;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+
+   
+ 
+}
+
+@include mediaMd{ 
+    .center
+    {
+        width: 100%;
+
+    }
+
+}
+
+
+@include mediaSm {
+    .sectionAuctioneers{
+        position: relative;
+    }
+    .left, .right {
+        position: absolute;
+    
+           top: 100% !important;
+            
+            transform: translateY(-50%);
+     }
+     .left {
+        left: 50%;
+        transform: translateX(-50%) ;
+
+     }
+     .right {
+        right: 50%;
+        transform: translateX(50%);
+
+     }
+}

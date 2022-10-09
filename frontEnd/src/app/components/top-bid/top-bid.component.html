@@ -1,0 +1,77 @@
+<div class="wrapper">
+  <ng-template #showcase>
+   
+
+      <div class ="wrapDiv" *ngIf="objShown.topBidExist; else doesNotExist" class="d-flex flex-column">
+  
+        <p class="leading text-light  w-100 text-center my-1 p-2"> <span class="text-warning">
+          Leading Bidder Details
+        </span> </p>
+        <div class="subTitle w-100 text-center"> Top Bid <span class="text-warning">{{objShown.bid}}</span> ETB</div>
+        <div class="img my-2 mx-auto d-flex flex-column">
+            <img [src]="objShown.imgPath" onerror="this.src='../../../assets/default.jpg'" >
+            <div class="detailsBidder my-2 w-100 text-center">
+              <div class="title zeg text-secondar w-100">
+                {{ objShown.username | titlecase }}
+              </div> 
+
+    
+            <div class="subTitle  zeg text-secondary w-100">
+                {{ objShown.phone }}
+              </div> 
+            </div>
+        
+          </div>
+       
+    
+      </div>  
+        
+        <ng-template #doesNotExist>
+          <p class="text-light bg-danger w-100 text-center my-2">No Bid yet</p>
+          <div class="img mt-2 mx-auto d-flex flex-column">
+              <img [src]="objShown.imgPath" onerror="this.src='../../../assets/default.jpg'" >
+  
+  
+            </div>
+       
+        </ng-template>
+  
+     
+   
+
+  </ng-template>
+
+<div class="dateOver" *ngIf="remainingTime <= 0; else showcase">
+  <div class ="wrapDiv" *ngIf="objShown.topBidExist; else doesNotExists" class="d-flex flex-column">
+  
+    <p class="text-light bg-success w-100 text-center my-2">Congrats</p>
+
+    <div class="img my-2 mx-auto d-flex flex-column">
+        <img [src]="objShown.imgPath" onerror="this.src='../../../assets/default.jpg'" >
+        <div class="detailsBidder my-2 w-100 text-center">
+          <div class="zeg text-secondar w-100">
+            {{ objShown.username | titlecase }}
+          </div> 
+          <div class="zeg w-100"> Winner Bid {{objShown.bid}}</div>
+
+        <div class="zeg text-secondary w-100">
+            {{ objShown.phone }}
+          </div> 
+        </div>
+    
+      </div>
+   
+
+  </div>
+  
+  <ng-template #doesNotExists>
+    <p class="text-light bg-danger w-100 text-center my-2">Ended without a single Bid</p>
+    <div class="img mt-2 mx-auto d-flex flex-column">
+        <img [src]="objShown.imgPath" onerror="this.src='../../../assets/default.jpg'" >
+
+
+      </div>
+ 
+  </ng-template>
+</div>
+</div>

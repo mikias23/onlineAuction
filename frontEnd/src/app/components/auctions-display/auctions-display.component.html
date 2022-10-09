@@ -1,0 +1,39 @@
+<app-fetch  (auctions)="auctions($event)">
+
+</app-fetch>
+
+<div class="close" *ngIf = "filter">
+
+
+<div class="mx-2 p-2 return" (click)="allAuction()" style="z-index: 10000;">
+<fa-icon [icon]="faAngleDoubleLeft"></fa-icon> <span class="mx-2">Return</span></div>
+</div>
+<div class="title my-3">
+  Auctions
+</div>
+<div class="center" *ngIf ="auctionsArrayStore.length !== 0">
+  <div class="left" *ngIf ="auctionsArrayStore.length > 8">
+    <app-slider-right [type]="'left'" (leftEmit)="leftClicked()">
+
+    </app-slider-right>
+  </div>
+  <div class="right" *ngIf ="auctionsArrayStore.length > 8">
+    <app-slider-right [type]="'right'" (rightEmit)="rightClicked()" >
+
+    </app-slider-right>
+  </div>
+    <div class="" *ngFor = "let auction of auctionsArray">
+      <app-each-auction [auction]="auction">
+      </app-each-auction>
+    </div>
+
+
+    
+  </div>
+<div class="center d-flex flex-column" *ngIf ="auctionsArrayStore.length === 0">
+  <h4 class="text-light bg-danger text-center m-auto w-100">No Auctions has been uploaded Yet </h4>
+  <div class="img text-center w-100">
+    <img src="../../../assets/no-data.jpg" alt="">
+
+  </div>
+</div>

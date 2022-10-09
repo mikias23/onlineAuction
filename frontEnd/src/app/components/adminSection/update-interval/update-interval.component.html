@@ -1,0 +1,43 @@
+
+     <p class="w-100 text-center bg-success text-light">Set Interval for database update</p>
+      
+     <p class="subTitle ">
+    Currently Database update for posted auctions is every 
+     </p>
+
+     <p class="time">
+        <span class="hrs mx-1">
+            {{days}} 
+        </span>
+        days :
+        <span class="hrs">
+            {{hrs}}
+        </span>
+        hrs :
+        <span class="mins mx-1">
+            {{mins}} mins
+        </span>
+     </p>
+
+     <form [formGroup]="updateIntervalForm" (ngSubmit)="submit()" class="d-flex flex-column">
+<div class="d-flex flex-row w-100 justify-space-between p-2">
+
+    <div class="form-group d-flex flex-column">
+        <label for="form-label">Days</label>
+        <input (focusout)="dirtys()" class="form-control" type="number" placeholder="{{days}}" formControlName="days">
+    </div>
+    <div class="form-group d-flex flex-column">
+        <label for="form-label">Hours</label>
+        <input (focusout)="dirtys()" class="form-control" type="number" formControlName="hrs" placeholder="{{hrs}}">
+    </div>
+    <div class="form-group d-flex flex-column">
+        <label for="form-label">Minutes</label>
+        <input (focusout)="dirtys()" class="form-control" type="number" placeholder="{{mins}}" formControlName="mins">
+    </div>
+
+   
+   
+
+</div>
+<button type="submit" class="btn btn-primary w-50 m-auto" [disabled]="!dirtyTog">Change</button>
+</form>

@@ -1,0 +1,97 @@
+<app-fetch (auctioneers)="auctioneersMethod($event)" (bidders)="biddersMethod($event)">
+
+</app-fetch>
+
+<div class="center">
+
+    <div class="details">
+
+       <div class="img" *ngIf="auctioneer">
+        <p class="text-center">Auctioneer</p>
+
+       <img [src]="auctioneer.profilePicPath" alt="">
+       <div class="imgInfo mt-2">
+  
+      {{auctioneer.firstName | titlecase}} {{auctioneer.lastName | titlecase}}
+
+       </div>
+       </div>
+       <div class="info">
+         <div class="d-flex flex-column mt-2">
+      <p class="my-2">{{auctioneer.phone}}</p>
+      <p class="my-2 text-center">{{auctioneer.username}}</p>
+         </div> 
+       </div>
+
+    </div>
+    <div class="bidder" >
+      <ng-template #doesNotExis class=""  >
+        <p class=" Nobidder text-light  w-100 text-center my-2 p-2">No Biddder yet</p>
+        <div class="imgNone mt-2 mx-auto d-flex flex-column">
+            <img [src]="'objShown.imgPath'" onerror="this.src='../../../assets/default.jpg'" >
+
+
+          </div>
+      </ng-template>
+      <div class=""  *ngIf="biddersInvolved.length && auctionSubscribers.length; else doesNotExis">
+        <app-top-bid [subscribers]="auctionSubscribers" [bidders] = "biddersInvolved" [topOrBaseBid]="topOrBaseBid" [dateObj]="dateObj">
+
+        </app-top-bid>
+      </div>
+    
+
+
+    </div>
+    <div class="items">
+ 
+      <app-auction-item-show [auction]="auction">
+
+      </app-auction-item-show>
+
+    </div>
+    <div class="bidders" >
+        <ng-template #doesNotExists  >
+          <p class="text-light bg-danger w-100 text-center my-2">No Bid yet</p>
+          <div class="imgNone mt-2 mx-auto d-flex flex-column">
+            <fa-icon [icon]="faMoneyCheckAlt"></fa-icon>
+            </div>
+        </ng-template>
+        <div class="" *ngIf="biddersInvolved.length && auctionSubscribers.length;  else doesNotExists ">
+          <app-auction-bidder-section [subscribers]="auctionSubscribers" [bidders] = "biddersInvolved" (removeBidderBid)="removeBidderBid($event)" [topOrBaseBid]="topOrBaseBid" >
+
+          </app-auction-bidder-section>
+        </div>
+
+    </div>
+    <div class="subscribers"  >
+      <ng-template #doesNotExist class=""  >
+        <p class="text-light bg-danger w-100 text-center my-2">No Subscribers</p>
+        <div class="imgNone mt-2 mx-auto d-flex flex-column">
+            <img [src]="'objShown.imgPath'" onerror="this.src='../../../assets/default.jpg'" >
+
+
+          </div>
+      </ng-template>
+
+      <div class="" *ngIf="biddersInvolved.length && auctionSubscribers.length; else doesNotExist ">
+        <app-auction-subscriber-section [subscribers]="auctionSubscribers" [bidders] = "biddersInvolved" (unsubscribeBidder)="unsubscribeBidder($event)" >
+
+        </app-auction-subscriber-section>
+      </div>
+
+    </div>
+    
+    <div class="important">
+         <app-auction-event [dateObj]="dateObj" [auction]="auction">
+
+         </app-auction-event>
+    </div>
+  <div class="action" *ngIf="biddersInvolved && auctionSubscribers" >
+    <app-auction-action-section [subscribers]="auctionSubscribers"
+     [bidders] = "biddersInvolved" 
+    (subscribeBidder)="subscribeBidder($event)" (unsubscribedBidder)="unsubscribeBidder($event)" (bidFormEmit)="submitBid($event)" (removeBid)="removeBidderBid($event)" [topOrBaseBid]="topOrBaseBid" [auctionType]="auctionType" [dateObj]="dateObj"  [auction]="auction">
+       
+    </app-auction-action-section>
+    </div>
+
+</div>

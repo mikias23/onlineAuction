@@ -1,0 +1,91 @@
+@import '../../../sass/styles.scss';
+.return {
+    &:hover {
+        cursor: pointer;
+        color: #ccc;
+    }
+}
+.center {
+     border-radius: 0;
+     border: 0;
+     
+    display: grid;
+    padding: 50px;
+    justify-content: center;
+    grid-gap: 30px;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    width: 100%;
+    height: 100%;
+    position:relative;
+ .left, .right {
+    position: absolute;
+
+        top: 50%;
+        
+        transform: translateY(-50%);
+ }
+ .left {
+    left: 0%;
+ }
+ .right {
+    right: 0%;
+ }
+}
+.title {
+    font-size: 25px;
+    font-weight: 300;
+    @include card-dark;
+    border: 0;
+    border-radius: 0;
+    padding: 10px 20px;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.527);
+    margin: 50px 0;
+}
+
+@include mediaMd{ 
+    :host
+    {
+        width: 100%;
+
+    }
+
+}
+
+
+@include mediaSm {
+    .sectionAuctioneers{
+        position: relative;
+    }
+    .left, .right {
+        position: absolute;
+    
+           top: 105% !important;
+            
+            transform: translateY(-50%);
+     }
+     .left {
+        left: 50%;
+        transform: translateX(-50%) ;
+
+     }
+     .right {
+        right: 50%;
+        transform: translateX(50%);
+
+     }
+}
+.center {
+    img {
+        width:600px;
+        height: 300px;
+    }
+}
+@include mediaMd{
+    .center {
+        img {
+            width:100%;
+            height: 300px;
+        }
+    }
+}

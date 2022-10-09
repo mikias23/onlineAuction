@@ -1,0 +1,264 @@
+
+<app-fetch (categories)="categories($event)" (cities)="cities($event)">
+
+</app-fetch>
+
+<form [formGroup]="auctionForm" (ngSubmit)="submitForm()" class=" d-flex flex-column">
+ 
+   <mat-horizontal-stepper linear>
+      <mat-step label="first"  >
+         <div class="each d-flex flex-column">
+         <h4 class="col-lg-4 col-md-6 m-auto col-12 bg-success text-light p-2 text-center">Auction Form (Page 1)</h4>
+         <p class="text-center col-lg-4 col-md-6 m-auto col-12 my-3 text-center">Type</p>
+         <div class="eachItem my-1 col-lg-4 col-md-6 m-auto col-12">      <mat-radio-group  formControlName = "type"  >
+              
+             <mat-radio-button value="normal" [checked]="true" class="mx-2">
+                  Normal
+             </mat-radio-button>
+             <mat-radio-button value="reverse">
+                Reverse
+            </mat-radio-button>
+         
+         </mat-radio-group>
+         </div>
+         
+            <p class="text-center col-lg-4 col-md-6 m-auto col-12 my-2 text-center">Auction Format</p>
+            <div class=" eachItem  my-2 col-lg-4 col-md-6 m-auto col-12"> 
+            <mat-radio-group  formControlName = "format" class="  d-flex flex-row justify-content-between" (change)="onFormatChange($event.value)">
+           
+             <mat-radio-button value="regular" [checked]="true" class="mx-2 d-flex justify-content-between">
+                Online Auction 
+             </mat-radio-button>
+             <mat-radio-button class="mx-2" value="live" >
+               Live Online Auction 
+            </mat-radio-button>
+         
+         </mat-radio-group>
+            </div>
+            <div class=" eachItem  my-2 col-lg-4 col-md-6 m-auto col-12" > 
+            
+               <div class="" *ngIf = "!liveAuction ">
+                  <mat-form-field  floatLabel = "auto" hideRequiredMarker appearance="fill">
+                  <mat-label>Auction Length in Day </mat-label>
+                  <input  matInput required  type="number"  formControlName="span"  (keyup)="spanFilled($event)"  />
+                  <mat-error
+                  *ngIf="f['span'].errors?.['required']">
+                 Length of auction is <strong>required</strong>
+                  </mat-error> 
+                  
+               </mat-form-field>  
+                 </div>
+                 <div class=" eachItem " *ngIf = "liveAuction">
+                  <mat-form-field  floatLabel = "auto" hideRequiredMarker appearance="fill">
+                  <mat-label>Auction Length in Day </mat-label>
+                  <input  matInput required  type="number"  formControlName="span"  (keyup)="spanFilled($event)" readonly />
+                  <mat-error
+                  *ngIf="f['span'].errors?.['required']">
+                 Length of auction is <strong>required</strong>
+                  </mat-error> 
+                  
+               </mat-form-field>  
+                 </div>
+    
+             
+           
+         
+             </div>
+            <div class=" eachItem  my-3 col-lg-4 col-md-6 m-auto col-12 d-flex flex-column" 
+            > 
+         <mat-form-field floatLabel = "auto" hideRequiredMarker appearance="fill">
+         
+             <mat-label>Start Date</mat-label>
+             <input  matInput [matDatepicker]="myDatePicker" [min] ="min" 
+              (dateChange)="onDateChange($event)" formControlName="startDate">
+             <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+              <mat-datepicker #myDatePicker>
+         
+              </mat-datepicker>
+            </mat-form-field>
+   
+
+            </div>
+            <button mat-raised-button color="primary" style="width : 10em;" type="button" class="w-25 m-auto p-3" matStepperNext>Next</button>
+         </div> </mat-step>
+      <mat-step label="second" [formGroup]="auctionForm" >
+         <div class="each d-flex flex-column">
+
+         <h4 class="  eachItem  col-lg-4 col-md-6 m-auto col-12 bg-success text-light p-2 text-center">Auction Form (Page 2)</h4>
+
+         <div class="d-flex flex-column">
+
+
+
+                  <div class=" eachItem  my-3 col-lg-4 col-md-6 m-auto col-12"> 
+                  <mat-form-field floatLabel = "auto" hideRequiredMarker appearance="fill">
+                   <mat-label>End Date</mat-label>
+                   <input  matInput [matDatepicker]="myDatePickers" formControlName="endDate" placeholder="endDate" readonly />
+                   <mat-datepicker-toggle   [disabled]="true"  [for]="myDatePickers" matSuffix></mat-datepicker-toggle>
+                    <mat-datepicker #myDatePickers>
+               
+                    </mat-datepicker>
+                  </mat-form-field>
+                  </div>
+                  <div class=" eachItem my-3 col-lg-4 col-md-6 m-auto col-12"> 
+                   <mat-form-field appearance="fill">
+                       <mat-label> City </mat-label>
+                       <mat-select formControlName="city" >
+               
+                           <mat-option *ngFor = "let i of citiesArray" value="{{ i }}" >
+                              {{ i }}
+                           </mat-option >
+                          
+                       </mat-select>
+                   </mat-form-field>
+               
+                   </div>
+                   <div class=" eachItem  my-3 col-lg-4 col-md-6 m-auto col-12"> 
+                       <mat-form-field  floatLabel = "auto" hideRequiredMarker appearance="fill">
+                           <mat-label>Phone</mat-label>
+                           <input matInput required  type="text"  formControlName="phone" placeholder="{{user.phone}}"/>
+                       
+                           <mat-error
+                           *ngIf="f['phone'].errors?.['required']">
+                           lastName is <strong>required</strong>
+                           </mat-error> 
+                           
+                        </mat-form-field>  
+                   
+                       </div>
+                       <div class=" eachItem  my-3 col-lg-4 col-md-6 m-auto col-12" > 
+                        <mat-form-field appearance="fill"  >
+                            <mat-label> Item Category </mat-label>
+                            <mat-select formControlName="category" >
+                               
+                               
+                                <mat-option *ngFor = "let i of categoriesArray" value="{{ i }}" >
+                                   {{ i }}
+                                </mat-option >
+                               
+                            </mat-select>
+                        </mat-form-field>
+            
+
+
+      </div>
+                       <div class=" eachItem  my-3 col-lg-4 col-md-6 m-auto col-12 d-flex flex-column"> 
+                       <mat-form-field floatLabel = "auto" hideRequiredMarker appearance="fill">
+                        <mat-label>Description of Items Auction</mat-label>
+
+                        <textarea matInput formControlName="description" ></textarea>
+                       </mat-form-field>
+         
+                       </div>
+
+                       <button mat-raised-button color="primary" style="width : 10em;" matStepperNext  type="button" class="m-auto p-3 w-25">Next</button>
+         </div>
+         </div>
+      </mat-step>
+      <mat-step label="third" >
+         <div class="each d-flex flex-column">
+         <h4 class="   col-lg-4 col-md-6 m-auto col-12 bg-success text-light p-2 text-center">Auction Form (Page 3)</h4>
+
+         <div class="eachItem flex flex-column">
+            <div class="contain my-3 p-3  d-flex flex-column " *ngFor = "let item of fakeArray(); let i = index">
+        
+               <p class="text-center itemIndex"> Item {{i + 1  }}</p>
+               <div class="close" *ngIf="i !== 0" (click)="deleteItem(i)"><fa-icon [icon]="faTimes"></fa-icon></div>
+               <mat-form-field  floatLabel = "auto" hideRequiredMarker appearance="fill">
+            
+                   <mat-label>Item Name</mat-label>
+                   <input matInput required  type="text" (focusout)="setItemName($event, i)"/>
+               
+                   <!-- <mat-error
+                   *ngIf="f['name'].errors?.['required']">
+                   lastName is <strong>required</strong>
+                   </mat-error> -->
+                   
+                </mat-form-field> 
+           
+                <mat-form-field  floatLabel = "auto" hideRequiredMarker appearance="fill">
+                   <mat-label>Item Brand</mat-label>
+                   <input matInput required  type="text" (focusout)="setBrand($event, i)"   />
+               
+                   <!-- <mat-error
+                   *ngIf="f['brand'].errors?.['required']">
+                   lastName is <strong>required</strong>
+                   </mat-error> -->
+                   
+                </mat-form-field>  
+                <mat-form-field  floatLabel = "auto" hideRequiredMarker appearance="fill">
+                   <mat-label>Price Per Item</mat-label>
+                   <input matInput required  type="number" (focusout)="setPrice($event, i)"  />
+               
+                   <!-- <mat-error
+                   *ngIf="f['name'].errors?.['required']">
+                   lastName is <strong>required</strong>
+                   </mat-error> -->
+                   
+                </mat-form-field>  
+                <mat-form-field  floatLabel = "auto" hideRequiredMarker appearance="fill">
+                   <mat-label>Quantity</mat-label>
+                   <input matInput required  type="number" (focusout)="setQuantity($event, i)"/>
+               
+                   <!-- <mat-error
+                   *ngIf="f['name'].errors?.['required']">
+                   lastName is <strong>required</strong>
+                   </mat-error> -->
+                   
+                </mat-form-field>
+                <div class="col-12 my-2">      
+                  <mat-radio-group  (change)="onItemCondition($event.value, i)" class="d-flex flex-row justify-content-between " >
+              
+                  <mat-radio-button value="new" [checked]="true" class="mx-2">
+                      New 
+                  </mat-radio-button>
+
+                  <mat-radio-button value="used good">
+                    Used - Good
+                 </mat-radio-button>
+                 <mat-radio-button value="used old">
+                  Used - Old
+               </mat-radio-button>
+              
+              </mat-radio-group>
+              </div>
+                
+
+                <div class="form-group img   my-2">
+                   <label for="">Add Item Image </label>
+                   <input type="file" id="image" class="form-control my-2" placeholder="chooseimage" (change)="onAddImage($event, i)">
+                 </div>
+                 <div class="img" *ngIf = "imgSrc && imgIndex === i ">
+                   <img [src]="imgSrc" alt="" class="img m-auto">
+                  </div>  
+           </div>
+           <div class="text-center w-100">
+            <button type="button" class="btn btn-primary m-auto" (click)="addItem()">Add Item</button>
+           </div>
+     
+         </div>
+         <div class="eachItem my-3 col-lg-4 col-md-6 m-auto col-12"> 
+           <mat-form-field  floatLabel = "auto" hideRequiredMarker appearance="fill">
+               <mat-label>Set Starting Bid</mat-label>
+               <input matInput required  type="number"  [value]="totalPrice" placeholder="{{totalPrice}} Birr" readonly />
+           
+               <!-- <mat-error
+               *ngIf="f['name'].errors?.['required']">
+               lastName is <strong>required</strong>
+               </mat-error> -->
+               
+            </mat-form-field>  
+            
+           </div>
+           <div class="text-center w-100">
+
+           <input  type="submit" class="btn btn-success col-md-4 col-6 col-lg-4 m-auto p-3"   value="Submit" />
+         </div>
+
+      </div>
+      </mat-step>
+      </mat-horizontal-stepper>
+
+
+</form>
+

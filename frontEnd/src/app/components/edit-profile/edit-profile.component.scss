@@ -1,0 +1,35 @@
+@import '../../../sass/styles.scss';
+form {
+    color: white !important;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    @include card-dark;
+    border-radius: 0;
+}
+.fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 10px;
+    mat-form-field {
+        height: 60px;
+        width: 130px;
+    }
+    & > div  {
+        & > div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+    
+     
+     
+      
+    }
+
+}

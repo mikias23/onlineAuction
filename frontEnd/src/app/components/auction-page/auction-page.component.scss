@@ -1,0 +1,134 @@
+@import '../../../sass/styles.scss';
+.center{
+    display: grid;
+    width: 95%;
+    padding: 10px 10px;
+    margin: auto;
+    padding-bottom: 20px !important ;
+    grid-gap: 20px;
+    background-color: rgba(6, 5, 5, 0.836);
+    height: 615px;
+    grid-template:
+    " items  impor   impor  subsc " 1fr 
+    " items  detail  bidder subsc " 1fr
+    " items  detail  bidder bidde " 1fr
+    " items  actio   actio   bidde " 1fr
+    / 3fr    2fr  2fr   4fr
+    ;
+& > div {
+  
+
+}
+
+}
+
+.imgNone {
+    width: 100%;
+    height:80%;
+    position: relative;
+    display:grid;
+    place-items: center;
+    
+    img {
+        width: 100%;
+        height:100%;
+   
+    }
+   fa-icon {
+        font-size: 100px;
+        color: yellow;
+        
+    }
+    &::before{
+        @include after;
+        background-color: rgba(76, 116, 159, 0.632);
+    }
+}
+.bidder {
+    grid-area: bidder;
+    background-color: rgba(5, 52, 101, 0.632);
+ 
+}
+.details {
+    grid-area: detail;
+    background-color: rgba(76, 116, 159, 0.632);
+
+    .img {
+        background: rgba(3, 3, 3, 0.559);
+        display: grid;
+        place-items: center;
+        @include card-dark;
+        border-radius: 0;
+        img{
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+        }
+        .imgInfo {
+            color: white;
+        }
+    }
+    .info {
+        background: rgba(5, 52, 101, 0.632);
+       
+       display: grid;
+       place-items: center;
+        & > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            list-style-type: none;
+            
+            .li{
+                margin: 10px 0;
+                text-transform: capitalize;
+                color: #ccc;
+                span {
+                    margin-left: 5px;
+                    color: white;
+                }
+            }
+        }
+    }
+
+}
+.items {
+    grid-area: items;
+
+    background-color: rgba(20, 34, 48, 0.632);
+@include card-dark;
+border: 0px;
+    padding: 20px;
+
+}
+.Nobidder {
+    @include card-dark;
+    background-color:$cool-bg-darker;
+}
+.subscribers {
+    grid-area: bidde;
+    background-color: rgba(20, 34, 48, 0.632);
+    @include card-dark;
+    border: 0px;
+    overflow-y: auto;
+
+
+}
+.bidders {
+    grid-area: subsc;
+    background-color: rgba(20, 34, 48, 0.632);
+    @include card-dark;
+    border: 0px;
+    overflow-y: auto;
+
+}
+.important {
+grid-area: impor;
+background-color: rgba(112, 0, 0, 0.295);
+
+}
+.action {
+    grid-area: actio;
+    background-color: rgba(93, 3, 93, 0.55);
+
+}

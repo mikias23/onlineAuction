@@ -1,0 +1,85 @@
+<div class="wrapper">
+
+    <app-fetch (auctions)="auctions($event) " (auctionsHistory)="auctionsHistory($event)"></app-fetch>
+    <div class ="topnav" *ngIf = "sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <div class="menuIcon" *ngIf = "!sidenav.opened">
+            <mat-icon>menu</mat-icon>
+        </div>
+
+    
+     </div>
+
+     <mat-sidenav-container>
+    
+        <mat-sidenav #sidenav = "matSidenav">
+            
+            <div class="close" *ngIf = "sidenav.opened && sidenav.mode === 'over'" (click)="sidenav.toggle()">
+                <mat-icon>close</mat-icon>
+        
+            </div>
+            <div class="img">
+                <img [src]="bidder.profilePicPath" onerror="this.src='../../../assets/default.jpg'" >
+                <p class="my-1 text-light bg-primary p-2">{{bidder.username}}</p>
+            </div>
+            <mat-button-toggle-group #toggler="matButtonToggleGroup" value="1">
+                         
+                <mat-button-toggle value="1" (click)="hideSideBar()">Profile</mat-button-toggle>
+                <mat-button-toggle value="2" (click)="hideSideBar()">
+                   Subscribed Auctions
+                </mat-button-toggle>
+                <mat-button-toggle value="3" (click)="hideSideBar()">
+                 Past Subscribed Auctions
+                 </mat-button-toggle>
+                 <mat-button-toggle value = "4"  (click)="deactivateAccount()">
+                    Deactivate account
+                  </mat-button-toggle>
+                </mat-button-toggle-group>
+            
+                
+        </mat-sidenav>
+       
+        <mat-sidenav-content>
+
+            <div class="" *ngIf="toggler.value === '2'">
+                <div class="auctionsList" *ngIf ="auctionsBidderInvolved.length !== 0">
+                  
+                    <div class="" *ngFor = "let auction of   auctionsBidderInvolved
+                    ">
+                      <app-each-auction [auction]="auction"  [unsubscribe]="true" [bidder]="bidder">
+                      </app-each-auction>
+                    </div>
+                  </div>
+                  <div *ngIf="auctionsBidderInvolved.length == 0">
+           <app-not-found [msg]="'You have not subscribed to any auction which is not outdated'">
+
+           </app-not-found>
+                  </div>
+                
+            </div>
+            <div class="" *ngIf="toggler.value === '1'">
+                <h4 class="text-center align-items-center text-light my-3">Edit Profile</h4>
+                <app-edit-profile [user]="bidder" [type]="'bidder'" (NewUser)="newUser($event)">
+
+                </app-edit-profile>
+            </div>
+            <div class="" *ngIf="toggler.value === '3'">
+                <div class="auctionsList" *ngIf ="auctionsHistoryBidderSubscribed.length !== 0">
+                  
+                    <div class="" *ngFor = "let auction of   auctionsHistoryBidderSubscribed
+                    ">
+                      <app-each-auction [auction]="auction"  [history]="true" [bidder]="bidder" (rateAuction)="rateAuction($event)" (deleteRating)="deleteRating($event)">
+                      </app-each-auction>
+                    </div>
+                  </div>
+                  <div *ngIf="auctionsHistoryBidderSubscribed.length == 0">
+           <app-not-found [msg]="'You have not subscribed to any auction which is outdated'">
+
+           </app-not-found>
+                  </div>
+                
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+
+

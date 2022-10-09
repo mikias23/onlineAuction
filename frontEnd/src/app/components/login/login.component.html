@@ -1,0 +1,90 @@
+
+<div class="center">
+
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="d-flex flex-column" *ngIf="!forgetPassword && !addNewPassword  && !codeSent">
+    <div class="text-secondary d-flex flex-column">
+        <h4 class="">Login</h4>
+    </div>
+    <p class="title">Login As</p>
+    <mat-radio-group  formControlName = "type" class="d-flex flex-row">
+   
+<div class="mx-2">
+    <mat-radio-button value="bidder" [checked]="true" >
+        Bidder
+   </mat-radio-button>
+</div>
+<div class="mx-2">
+    <mat-radio-button value="auctioneer"  >
+        Auctioneer
+   </mat-radio-button>
+</div>
+<div class="mx-2">
+    <mat-radio-button value="adminstrator"  >
+        Admin
+   </mat-radio-button>
+</div>
+
+ </mat-radio-group>
+ <mat-form-field class="my-2 col-lg-4 col-md-6 m-auto col-12" floatLabel = "auto" hideRequiredMarker appearance="fill">
+    <mat-label color="accent">Username</mat-label>
+    <input matInput required formControlName = "username" type="text" />
+    <mat-error *ngIf="f['username'].errors?.['minlength'] && !f['username'].errors?.['required'] ">
+    Please enter at least an 8 character username
+    </mat-error>
+
+    <mat-error
+    *ngIf="f['username'].errors?.['required']">
+    Username is <strong>required</strong>
+    </mat-error>
+    
+ </mat-form-field>
+ <mat-form-field class="my-2 col-lg-4 col-md-6 m-auto col-12" floatLabel = "auto" hideRequiredMarker appearance="fill">
+    <mat-label color="accent">Password</mat-label>
+    <input matInput required formControlName = "password" type="password" />
+    <mat-error *ngIf="f['password'].errors?.['minlength'] && !f['password'].errors?.['required'] ">
+    Please enter at least an 8 character password
+    </mat-error>
+
+    <mat-error
+    *ngIf="f['password'].errors?.['required']">
+    password is <strong>required</strong>
+    </mat-error>
+    
+ </mat-form-field>
+
+
+
+ <button type="submit" class="btn btn-primary "> Login </button>
+ <a class="my-2" (click)="toggleForgetPassword()">Forgot Password</a>
+
+</form>
+
+<div class="" *ngIf="forgetPassword">
+  
+
+        <app-otp [length]="10" (phone)="phoneFromOtp($event)" >
+
+        </app-otp>
+        <div id="recaptcha-container"></div>
+        <div id="sign-in-button"></div>
+        <a class="mx-2" (click)="toggleForgetPassword()">Back</a>
+ </div>
+
+ <div class="loser" *ngIf="codeSent">
+    <app-otp [length]="6" [type]="'code'" (code)="codeFromOtp($event)">
+    </app-otp>
+    <div class="">
+      <a class="my-2 btn btn-info" (click)="toggleForgetPassword()">Back</a>
+    </div>
+</div>
+ 
+
+ <div class="loser" *ngIf="addNewPassword">
+    <app-update-password [type]="userType" [username]="username" (password)="password($event)">
+
+    </app-update-password>
+    <div class="">
+      <a class="my-2 btn btn-info" (click)="toggleForgetPassword()">Back</a>
+    </div>
+ 
+</div></div> 

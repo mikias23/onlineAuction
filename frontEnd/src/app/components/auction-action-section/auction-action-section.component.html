@@ -1,0 +1,133 @@
+<div class="center">
+
+<div class="subscribeWrapper">
+
+
+<div class="subscribeSection">
+    <form action="" [formGroup]="subscribeForm" (ngSubmit)="subscribe()" *ngIf="!unsubscribe">
+
+        <div *ngIf="!loggedIn">
+           
+            <p class="title text-light p-2 m-2  text-center danger"> Please Login as Bidder to Subscribe</p> 
+        </div>
+        <div *ngIf="loggedIn">
+            <div *ngIf="!bidder">
+               <p class="title danger text-light p-2 m-2  text-center ">An auctioneer can not subscribe</p> 
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+    
+       <div class="d-flex flex-column justify-content-center" *ngIf="bidder">
+        
+        <mat-form-field class="my-2 col-lg-4 col-md-6 m-auto col-12" floatLabel = "auto" hideRequiredMarker appearance="fill">
+            <mat-label color="accent">Enter Phone</mat-label>
+            <input matInput required formControlName = "phone" type="number"   [disabled] = "!bidder" />
+            <mat-error *ngIf=" (f['phone'].errors?.['minlength'] || f['phone'].errors?.['maxlength']) && !f['phone'].errors?.['required'] ">
+            Please enter a 10 length phone number
+            </mat-error>
+        
+            <mat-error
+            *ngIf="f['phone'].errors?.['required']">
+            Phone is <strong>required</strong>
+            </mat-error>
+            
+         </mat-form-field>
+        </div>
+      
+         <button class=" btn btn-success w-50 m-auto" type="submit" [disabled] = "!bidder || subscribeForm.invalid" >Subscribe</button>
+    
+        </div>
+    </form>
+    
+    <div class="w-100" *ngIf="unsubscribe">
+            
+        <p class="title text-light p-2 my-3  text-center"> You Have Subscribed  </p> 
+        <div class="w-100 text-center">
+            <button (click)="unsubscribeBidder(user._id)" class="btn btn-danger  w-75 mx-auto">Unsubscribe</button>
+        </div>
+     
+    </div>
+</div>
+
+  <div class="subscribeOver" *ngIf = "liveAuctionStatus === 'bid'  ">
+    <p class="w-100 text-center title ">Subscription has ended .  Today is bidding only</p>
+  </div>
+  <div class="subscribeOver" *ngIf = "  regularSubscriptionNotStarted  ">
+    <p class="w-100 text-center title">Subscription has not Started yet. Starts on {{auction.startDate | date}}</p>
+  </div>
+
+</div>
+<div class="bidderWrapper">
+    <div class="biddingSection">
+        <form action="" [formGroup]="bidForm" (ngSubmit)="bid()" *ngIf="unsubscribe && !bidMade ">
+            <div *ngIf="!loggedIn">
+               
+                <p class="title text-light p-2 m-2 text-center danger"> Please Login as Bidder to bid</p> 
+            </div>
+            <div *ngIf="loggedIn">
+                <div *ngIf="!bidder">
+                   <p class="title text-light p-2 m-2 text-center danger">An auctioneer Can not bid</p> 
+                </div>
+                <div *ngIf="bidder">
+                    <p class="title text-light p-2 my-3  text-center w-100 m-auto"> Submit Bid</p> 
+                </div>
+            </div>
+    
+            <div class="d-flex flex-column">
+        
+           <div class="d-flex flex-column justify-content-center" *ngIf="bidder">
+            
+          
+               <div class="form-group" >
+                 <label for="bidAmount">Enter Bid</label>
+                <input type="number" *ngIf = "auction.type === 'normal'" class="form form-control my-1" formControlName = "bidAmount" id = "bidAmount" placeholder="Enter bid amount" min="{{topOrBaseBid}}">
+                <input type="number" *ngIf = "auction.type === 'reverse'" class="form form-control my-1" formControlName = "bidAmount" id = "bidAmount" placeholder="Enter bid amount" max="{{topOrBaseBid}}">
+               </div>
+
+        
+         
+              
+            </div>
+          
+             <button class="btn btn-primary w-25 m-auto" type="submit" [disabled] = "!bidder || bidForm.invalid" >Bid</button>
+        
+            </div>
+        </form>
+        <div class="w-100" *ngIf="unsubscribe && bidMade">
+                
+            <p class="title text-light p-2 my-3 text-center">
+                Your Bid : <span class="text-warning">{{ yourBid }} </span>Birr
+            </p> 
+            <div class="w-100 text-center">
+                <button (click)="EditBid()" class="btn btn-info  w-25 mx-1">Edit</button>
+                <button (click)="deleteBid(user._id)" class="btn btn-danger  w-50 mx-1" >Delete </button>
+            </div>
+         
+        </div>
+        
+        <div class="w-100" *ngIf="!unsubscribe">
+                
+            <p class="title text-light p-2 my-3 text-center">
+                Subscribe to Bid
+            </p> 
+            <div class="m-100 text-center">
+                <button class="btn btn-success " [disabled]="true">Submit Bid</button>
+    
+            </div>
+    
+         
+        </div>
+    </div>
+    <div class="biddingNotStarted" *ngIf = "liveAuctionStatus === 'subscribe'">
+        <p class="title my-4" style="font-size: 12px;">Bidding Not Started yet. Subscribe before live bidding start</p>
+        <p class="my-2" style="font-size: 12px;">Live bidding will be on {{ dateObj.startDate | date }} </p>
+
+      </div>
+</div>
+
+
+<div class="dateOver" *ngIf="remainingTime <= 0 || liveAuctionStatus ==='over'">
+
+    <h4 class="title">Auction has ended</h4>
+</div>
+</div>

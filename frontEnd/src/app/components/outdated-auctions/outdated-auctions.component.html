@@ -1,0 +1,8 @@
+<div class="auctionsList" *ngIf ="auctioneerHistory.length !== 0">
+                  
+    <div class="" *ngFor = "let auction of   auctioneerHistory
+    ">
+      <app-each-auction [auction]="auction" [type]="'history'">
+      </app-each-auction>
+    </div>
+  </div>
